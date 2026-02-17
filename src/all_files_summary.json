@@ -1,0 +1,20 @@
+{
+  "backend/main.mo": "Canister storing petition signatures with methods to create signatures and query list or count.",
+  "feature_evidence.json": "Feature-to-file mapping report documenting implemented petition features and associated frontend components.",
+  "frontend-file-summaries.txt": "Human‑written summaries of major frontend files for build reference.",
+  "frontend/index.css": "Global Tailwind and CSS variable theme definitions for an editorial high‑contrast design.",
+  "frontend/index.html": "Root HTML template mounting the React app and loading main.tsx.",
+  "frontend/src/App.tsx": "Minimal wrapper component rendering the PetitionPage.",
+  "frontend/src/components/PetitionLetter.tsx": "Component rendering the full static petition letter with headings, paragraphs, and external link.",
+  "frontend/src/components/RecentSignatures.tsx": "Displays a scrollable list of recent signatures with timestamps using React Query data.",
+  "frontend/src/components/SignatureCount.tsx": "Card component showing the total signature count with live backend updates.",
+  "frontend/src/components/SignatureForm.tsx": "Signature submission form with validation, success messaging, and backend mutation handling.",
+  "frontend/src/hooks/useActor.ts": "Hook creating and managing the authenticated or anonymous backend actor with React Query caching.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Provides a React context and provider for Internet Identity login, managing identity state, login flow, and AuthClient setup.",
+  "frontend/src/hooks/usePetitionSignatures.ts": "Hooks for fetching signature counts, listing recent signatures, and creating new signatures via the backend actor.",
+  "frontend/src/index.css": "Defines Tailwind base styles and CSS variables for light/dark themes and global typography.",
+  "frontend/src/main.tsx": "Bootstraps the React app with React Query and Internet Identity providers.",
+  "frontend/src/pages/PetitionPage.tsx": "Renders the petition page layout including banner, petition letter, signature form, counts, and recent signatures.",
+  "frontend/tailwind.config.js": "Tailwind configuration extending theme colors, typography, animations, and container settings.",
+  "project_state.json": "Metadata describing project requirements, existing features, and pending feature requests for the petition app."
+}

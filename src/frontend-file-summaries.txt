@@ -1,0 +1,12 @@
+{
+  "frontend/src/App.tsx": "Main application component that renders the PetitionPage as the primary view.",
+  "frontend/src/pages/PetitionPage.tsx": "Complete petition page layout with hero banner, petition letter, signature form, count display, recent signatures list, and footer with attribution.",
+  "frontend/src/components/PetitionLetter.tsx": "Static presentational component displaying the full petition text with proper typography hierarchy and clickable Louis Vuitton link.",
+  "frontend/src/components/SignatureForm.tsx": "Form component with first name, last name, and area code inputs, client-side validation (3-digit area code), error handling, and success confirmation.",
+  "frontend/src/components/SignatureCount.tsx": "Card component displaying the total number of petition signatures with live updates from React Query.",
+  "frontend/src/components/RecentSignatures.tsx": "Scrollable list component showing recent petition signers with names, area codes, and relative timestamps.",
+  "frontend/src/hooks/usePetitionSignatures.ts": "React Query hooks for fetching signature count, signatures list, and creating new signatures with automatic cache invalidation.",
+  "frontend/src/index.css": "Global styles with high-contrast black/white/neutral OKLCH color system for editorial aesthetic, avoiding blue/purple palette.",
+  "frontend/tailwind.config.js": "Tailwind configuration with minimal border radius and editorial typography settings aligned with the neutral design system.",
+  "frontend/public/assets/generated/petition-banner.dim_1600x600.png": "High-contrast abstract banner image with chaotic black and white geometric patterns for the petition hero section."
+}

@@ -1,0 +1,71 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-17T00:33:24.991Z",
+  "summary": "Most frontend requirements appear implemented (petition page, static letter component with LV link, signature form w/ validation + success state, live count + recent list via React Query, editorial neutral theme, banner image referenced). Backend persistence and correctness are not adequately implemented based on the diff (non-stable storage and likely incorrect List usage), and some unrequested authentication/attribution functionality was added.",
+  "missing_requirements": [
+    {
+      "id": "REQ-3",
+      "requirement": "Implement backend persistence for petition signatures with stable persistence (survives reload and redeploy) and provide correct query/update methods for create, total count, and recent signatures list.",
+      "reason": "The backend stores signatures in a non-stable in-memory `let` List, which will not survive canister upgrade/redeploy. Additionally, the code uses `signatures.toArray()`, `signatures.size()`, and `signatures.add(...)` as if they are methods on the List value; in Motoko's `mo:core/List`, these are module functions and `add` returns a new list rather than mutating, so persistence and even basic accumulation may not work as required.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-1",
+      "requirement": "Display the full petition letter content exactly as provided, with clear hierarchy and static (non-user-editable) text.",
+      "reason": "The petition letter file is truncated in the diff summary, so it cannot be verified that the full provided text is included exactly and completely (including the full sign-off and any remaining lines).",
+      "evidence": [
+        "frontend/src/components/PetitionLetter.tsx (truncated)"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "If the backend call fails, the user sees an English error message and can retry.",
+      "reason": "The SignatureForm diff is truncated right where error UI appears (`{createSignature.isError && ( <Alert variant=\"dest...`), so it cannot be verified that an English backend-failure message and retry affordance is fully implemented.",
+      "evidence": [
+        "frontend/src/components/SignatureForm.tsx (truncated)"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Internet Identity authentication plumbing (provider/hook and actor creation dependent on identity), despite authentication not being requested.",
+      "reason": "The BuildRequest does not ask for authentication; it only restricts third-party auth if later requested. The diff adds Internet Identity context/provider and uses it in `useActor`.",
+      "evidence": [
+        "frontend/src/hooks/useInternetIdentity.ts",
+        "frontend/src/hooks/useActor.ts",
+        "frontend/src/main.tsx"
+      ]
+    },
+    {
+      "description": "Footer attribution/link to caffeine.ai with UTM parameters.",
+      "reason": "Not requested in the BuildRequest requirements or acceptance criteria.",
+      "evidence": [
+        "frontend/src/pages/PetitionPage.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.72,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/PetitionLetter.tsx",
+    "frontend/src/components/RecentSignatures.tsx",
+    "frontend/src/components/SignatureCount.tsx",
+    "frontend/src/components/SignatureForm.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/usePetitionSignatures.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/PetitionPage.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

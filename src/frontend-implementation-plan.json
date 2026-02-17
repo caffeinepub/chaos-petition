@@ -1,0 +1,143 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Chaos Petition — Petition page with signature form",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create a public petition page that renders the provided petition letter as static, well-formatted content including a clickable Louis Vuitton link.",
+      "acceptanceCriteria": [
+        "The page renders the petition subject and body text in English with clear typographic hierarchy (subject, greeting, paragraphs, sign-off).",
+        "The Louis Vuitton URL appears in the petition text as a clickable link to https://www.louisvuitton.com.",
+        "No user-entered data can alter or overwrite the petition text content (petition text is static content in the UI)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/PetitionPage.tsx",
+          "operation": "create",
+          "description": "Implement the petition page layout and render the petition letter as static UI content (subject line, greeting, paragraphs, sign-off). Ensure the https://www.louisvuitton.com reference is rendered as a clickable link and the petition text is not derived from user input."
+        },
+        {
+          "path": "frontend/src/components/PetitionLetter.tsx",
+          "operation": "create",
+          "description": "Create a dedicated presentational component that contains the petition text as static content exactly as provided in the BuildRequest (including the subject line and the referenced Louis Vuitton URL), and applies readable editorial typography."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Wire the PetitionPage into the app as the primary public view so it is reachable on app load (no authentication required)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add a signature form with First name, Last name, and Area code fields, client-side validation, and a success confirmation state.",
+      "acceptanceCriteria": [
+        "The form contains inputs for First name, Last name, and Area code, plus a “Sign petition” submit button.",
+        "Validation rules: First name and Last name are required; Area code is required and must be exactly 3 digits (0–9).",
+        "If validation fails, the user sees an inline error message and submission is blocked.",
+        "On successful submission, the form clears and shows a success confirmation state/message."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/SignatureForm.tsx",
+          "operation": "create",
+          "description": "Build the signature form UI and client-side validation (required first/last name; area code exactly 3 digits). Use shadcn-ui form-related building blocks (e.g., Input, Label, Button, Alert) by composing existing components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/PetitionPage.tsx",
+          "operation": "modify",
+          "description": "Place the SignatureForm on the petition page alongside the letter content, with clear inline English error messaging and a visible success confirmation state after valid submission."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Connect the signature form to the backend so submissions persist and the UI shows a live-updated total count and a recent signatures list with retryable error handling.",
+      "acceptanceCriteria": [
+        "Submitting the form calls the backend to store the signature.",
+        "After submission, the displayed total signature count updates without a full page refresh.",
+        "The page shows a “Recent signatures” section that updates after submission (e.g., includes the latest entry).",
+        "If the backend call fails, the user sees an English error message and can retry."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/backend.ts",
+          "operation": "create",
+          "description": "Add a small frontend wrapper that provides typed access to the available backend methods declared in frontend/src/backend.d.ts (createSignature, getSignatureCount, getSignatures). Use the core-infrastructure component’s backend connection configuration patterns; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/usePetitionSignatures.ts",
+          "operation": "create",
+          "description": "Create React Query hooks for loading total signature count and recent signatures, plus a mutation for submitting a signature and invalidating/refetching relevant queries on success."
+        },
+        {
+          "path": "frontend/src/components/RecentSignatures.tsx",
+          "operation": "create",
+          "description": "Implement a “Recent signatures” section that reads from the signatures query and renders a simple, readable list (including name display per stored data, area code, and a human-friendly createdAt). Use shadcn-ui list/panel building blocks (e.g., Card, Separator) by composing existing components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/SignatureCount.tsx",
+          "operation": "create",
+          "description": "Implement a signature count display that reads from the count query and updates automatically when the query refreshes. Use shadcn-ui typography/panel building blocks by composing existing components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/SignatureForm.tsx",
+          "operation": "modify",
+          "description": "Connect form submission to the createSignature backend call via the mutation hook. On success: clear inputs and show confirmation; on failure: show an English error message and allow retry."
+        },
+        {
+          "path": "frontend/src/pages/PetitionPage.tsx",
+          "operation": "modify",
+          "description": "Wire SignatureCount and RecentSignatures into the petition page and ensure they reflect live updates after a successful signature submission without a full page refresh."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Apply a bold, editorial, high-contrast neutral visual theme with responsive layout and consistent typography across the petition page and signing UI.",
+      "acceptanceCriteria": [
+        "The petition page has a distinct editorial visual style (not default browser styling) with consistent spacing, type scale, and component styling.",
+        "The design avoids a blue/purple primary palette.",
+        "The layout is responsive and readable on mobile and desktop."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Define global theme tokens and base styles for an editorial look (high-contrast neutrals, magazine-like type scale, strong spacing) while avoiding blue/purple as the primary palette. Apply consistent typography defaults for headings/paragraphs used on the petition page."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Adjust Tailwind theme extensions as needed to support the editorial petition design (e.g., neutral-forward color usage, typography utilities). Keep the palette aligned with high-contrast neutrals and avoid blue/purple emphasis."
+        },
+        {
+          "path": "frontend/src/pages/PetitionPage.tsx",
+          "operation": "modify",
+          "description": "Apply consistent responsive layout styling (mobile-first) and editorial typography classes across the petition content, signature form, count, and recent signatures sections."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Include the required generated banner image asset under frontend/public/assets/generated and render it on the petition page as part of the visual theme.",
+      "acceptanceCriteria": [
+        "The generated image file(s) exist under frontend/public/assets/generated with the exact filenames specified in imageRequirements.required.",
+        "The petition page uses the generated image asset(s) in the UI (e.g., as a hero/banner background or header artwork) without routing image delivery through the backend."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/petition-banner.dim_1600x600.png",
+          "operation": "create",
+          "description": "Add the generated static banner image asset at the exact path frontend/public/assets/generated/petition-banner.dim_1600x600.png for use in the petition page theme."
+        },
+        {
+          "path": "frontend/src/pages/PetitionPage.tsx",
+          "operation": "modify",
+          "description": "Render the static banner image from frontend/public/assets/generated/petition-banner.dim_1600x600.png as part of the petition page visual theme (e.g., header/hero artwork) using direct static asset usage in the frontend."
+        }
+      ]
+    }
+  ]
+}

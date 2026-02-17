@@ -1,0 +1,129 @@
+{
+  "kind": "build_request",
+  "title": "Petition page with signature form (first/last name + area code)",
+  "projectName": "Chaos Petition",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a public petition page that displays the full petition letter content exactly as provided (including the subject line and the referenced Louis Vuitton URL) in a readable, well-formatted layout.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "https://www.louisvuitton.com petition to sign with first/last name and area code\nPetition is: Subject: Strength in Numbers (and a Weakness in Yours)\n\nDear Louis Vuitton (https://www.louisvuitton.com),\n\nKo T T1C — pronounced “chaotic” — is my brand built from the mess that makes sense..."
+        ]
+      },
+      "acceptanceCriteria": [
+        "The page renders the petition subject and body text in English with clear typographic hierarchy (subject, greeting, paragraphs, sign-off).",
+        "The Louis Vuitton URL appears in the petition text as a clickable link to https://www.louisvuitton.com.",
+        "No user-entered data can alter or overwrite the petition text content (petition text is static content in the UI)."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Add a signature form to the petition page that collects First name, Last name, and Area code, with client-side validation and clear error messages in English.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "petition to sign with first/last name and area code"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The form contains inputs for First name, Last name, and Area code, plus a “Sign petition” submit button.",
+        "Validation rules: First name and Last name are required; Area code is required and must be exactly 3 digits (0–9).",
+        "If validation fails, the user sees an inline error message and submission is blocked.",
+        "On successful submission, the form clears and shows a success confirmation state/message."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Implement backend persistence for petition signatures with fields: firstName, lastName, areaCode, and createdAt timestamp; expose query and update methods for creating a signature and retrieving signatures and total count.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "petition to sign with first/last name and area code"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A backend update method allows creating a signature record with firstName, lastName, and areaCode, and records createdAt server-side.",
+        "A backend query method returns the total signature count.",
+        "A backend query method returns a list of recent signatures (at least including firstName, lastName initial or full lastName as stored, areaCode, createdAt).",
+        "Signatures remain available after page reload and redeploy (stable persistence appropriate to the template)."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Connect the frontend signature form to the backend so users can submit signatures and see the live-updated total count and a recent-signers list.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "petition to sign with first/last name and area code"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Submitting the form calls the backend to store the signature.",
+        "After submission, the displayed total signature count updates without a full page refresh.",
+        "The page shows a “Recent signatures” section that updates after submission (e.g., includes the latest entry).",
+        "If the backend call fails, the user sees an English error message and can retry."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Apply a coherent visual theme appropriate for a bold, editorial-style petition (high-contrast neutrals, magazine-like typography, strong spacing) and use it consistently across the petition text and signing components.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The petition page has a distinct editorial visual style (not default browser styling) with consistent spacing, type scale, and component styling.",
+        "The design avoids a blue/purple primary palette.",
+        "The layout is responsive and readable on mobile and desktop."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Generate and include required static image assets in the frontend and render them on the petition page as part of the visual theme (served from frontend/public/assets/generated).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The generated image file(s) exist under frontend/public/assets/generated with the exact filenames specified in imageRequirements.required.",
+        "The petition page uses the generated image asset(s) in the UI (e.g., as a hero/banner background or header artwork) without routing image delivery through the backend."
+      ]
+    }
+  ],
+  "constraints": [
+    "Use English for any user-facing text.",
+    "Backend must remain a single Motoko actor (no additional backend services).",
+    "Do not modify any files under frontend/src/components/ui or any other paths designated immutable by the system context; compose those components instead."
+  ],
+  "nonGoals": [
+    "Do not implement sending emails, notifications, or any automated delivery of the petition to Louis Vuitton.",
+    "Do not implement scraping, crawling, or any integration with louisvuitton.com beyond displaying a clickable link.",
+    "Do not add third-party authentication providers (only Internet Identity is allowed if authentication is later requested).",
+    "Do not implement payments or monetization features."
+  ],
+  "imageRequirements": {
+    "required": [
+      "High-contrast abstract “chaos” editorial banner artwork with subtle texture, black/white/neutral palette (petition-banner.dim_1600x600.png)"
+    ],
+    "edits": []
+  }
+}

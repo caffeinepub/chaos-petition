@@ -1,0 +1,104 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-public-petition-page-that-displays-the-full-petition-letter-content-exactly-as-provided-including-the-subject-line-and-the-referenced-louis-vuitton-url-in-a-readable-well-formatted-layout",
+      "featureTitle": "Create a public petition page that displays the full petition letter content exactly as provided (including the subject line and the referenced Louis Vuitton URL) in a readable, well-formatted layout.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/PetitionLetter.tsx",
+        "frontend/src/pages/PetitionPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-signature-form-to-the-petition-page-that-collects-first-name-last-name-and-area-code-with-client-side-validation-and-clear-error-messages-in-english",
+      "featureTitle": "Add a signature form to the petition page that collects First name, Last name, and Area code, with client-side validation and clear error messages in English.",
+      "files": [
+        "frontend/src/components/SignatureForm.tsx",
+        "frontend/src/pages/PetitionPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-connect-the-frontend-signature-form-to-the-backend-so-users-can-submit-signatures-and-see-the-live-updated-total-count-and-a-recent-signers-list",
+      "featureTitle": "Connect the frontend signature form to the backend so users can submit signatures and see the live-updated total count and a recent-signers list.",
+      "files": [
+        "frontend/src/components/RecentSignatures.tsx",
+        "frontend/src/components/SignatureCount.tsx",
+        "frontend/src/components/SignatureForm.tsx",
+        "frontend/src/hooks/usePetitionSignatures.ts",
+        "frontend/src/pages/PetitionPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-coherent-visual-theme-appropriate-for-a-bold-editorial-style-petition-high-contrast-neutrals-magazine-like-typography-strong-spacing-and-use-it-consistently-across-the-petition-text-and-signing-components",
+      "featureTitle": "Apply a coherent visual theme appropriate for a bold, editorial-style petition (high-contrast neutrals, magazine-like typography, strong spacing) and use it consistently across the petition text and signing components.",
+      "files": [
+        "frontend/src/index.css",
+        "frontend/src/pages/PetitionPage.tsx",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-generate-and-include-required-static-image-assets-in-the-frontend-and-render-them-on-the-petition-page-as-part-of-the-visual-theme-served-from-frontend-public-assets-generated",
+      "featureTitle": "Generate and include required static image assets in the frontend and render them on the petition page as part of the visual theme (served from frontend/public/assets/generated).",
+      "files": [
+        "frontend/src/pages/PetitionPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

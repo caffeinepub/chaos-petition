@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Build a petition web page for a letter addressed to Louis Vuitton, allowing users to sign with first name, last name, and area code.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- High-contrast abstract “chaos” editorial banner artwork with subtle texture, black/white/neutral palette (petition-banner.dim_1600x600.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-public-petition-page-that-displays-the-full-petition-letter-content-exactly-as-provided-including-the-subject-line-and-the-referenced-louis-vuitton-url-in-a-readable-well-formatted-layout",
+      "title": "Create a public petition page that displays the full petition letter content exactly as provided (including the subject line and the referenced Louis Vuitton URL) in a readable, well-formatted layout.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-signature-form-to-the-petition-page-that-collects-first-name-last-name-and-area-code-with-client-side-validation-and-clear-error-messages-in-english",
+      "title": "Add a signature form to the petition page that collects First name, Last name, and Area code, with client-side validation and clear error messages in English.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-connect-the-frontend-signature-form-to-the-backend-so-users-can-submit-signatures-and-see-the-live-updated-total-count-and-a-recent-signers-list",
+      "title": "Connect the frontend signature form to the backend so users can submit signatures and see the live-updated total count and a recent-signers list.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-coherent-visual-theme-appropriate-for-a-bold-editorial-style-petition-high-contrast-neutrals-magazine-like-typography-strong-spacing-and-use-it-consistently-across-the-petition-text-and-signing-components",
+      "title": "Apply a coherent visual theme appropriate for a bold, editorial-style petition (high-contrast neutrals, magazine-like typography, strong spacing) and use it consistently across the petition text and signing components.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-and-include-required-static-image-assets-in-the-frontend-and-render-them-on-the-petition-page-as-part-of-the-visual-theme-served-from-frontend-public-assets-generated",
+      "title": "Generate and include required static image assets in the frontend and render them on the petition page as part of the visual theme (served from frontend/public/assets/generated).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Petition page displaying the provided petition text (Subject: Strength in Numbers...) addressed to Louis Vuitton",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Signature form to sign the petition with first name, last name, and area code",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Implement backend persistence for petition signatures with fields: firstName, lastName, areaCode, and createdAt timestamp; expose query and update methods for creating a signature and retrieving signatures and total count.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Chaos Petition",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
